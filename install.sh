@@ -3,14 +3,15 @@
 function create_link() {
   FILE=$1
 
-  THEME_PATH=/Users/yuta.yoshiike/Library/Application\ Support/LimeChat/Themes
-  TARGET=$THEME_PATH/$FILE
+  THEME_PATH=/Users/$(whoami)/Library/Application\ Support/LimeChat/Themes
+  TARGET="$THEME_PATH/$FILE"
+  FROM="$(pwd)/$FILE"
 
   if [ -f "$TARGET" ]; then
     echo "    already exists: $TARGET"
   else
-    ln -s ./$FILE $TARGET
-    echo "    ln -s ./$FILE $TARGET"
+    ln -s $FROM "$TARGET"
+    echo "    ln -s $FROM $TARGET"
   fi
 }
 
